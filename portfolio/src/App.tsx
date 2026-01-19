@@ -1,45 +1,178 @@
+import { useEffect, useState } from "react";
+import "./App.css";
+
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+
+  useEffect(() => {
+    document.body.className = darkMode ? "dark" : "light";
+  }, [darkMode]);
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const sections = [
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "skills", label: "Skills" },
+    { id: "experience", label: "Experience" },
+    { id: "projects", label: "Projects" },
+    { id: "contact", label: "Contact" },
+  ];
+
+  const projects = [
+    {
+      title: "Delivery Order Automation",
+      desc: "Automated DO processing system using PHP, OCR, and barcode extraction.",
+      link: "https://github.com/yourusername/delivery-automation",
+    },
+    {
+      title: "Driver Payroll System",
+      desc: "Built payroll module with SAP integration and MySQL reporting.",
+      link: "https://github.com/yourusername/driver-payroll",
+    },
+    {
+      title: "Portfolio Website",
+      desc: "Modern portfolio website built with React & TypeScript.",
+      link: "https://github.com/yourusername/portfolio",
+    },
+  ];
+
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+    setNavOpen(false);
+  };
+
   return (
-    <div className="container">
-      <header className="hero">
-        <h1>Hi, I'm Phway Phway</h1>
-        <p>Software Developer | Backend & Systems</p>
-        <a className="btn" href="#projects">
-          View My Work
-        </a>
+    <div className="App">
+      <header className="navbar">
+        <div className="logo">MyPortfolio</div>
+
+        <div className={`nav-links ${navOpen ? "open" : ""}`}>
+          {sections.map((sec) => (
+            <a
+              key={sec.id}
+              className={activeSection === sec.id ? "active" : ""}
+              onClick={() => scrollToSection(sec.id)}
+            >
+              {sec.label}
+            </a>
+          ))}
+
+          <button
+            className="dark-toggle"
+            onClick={() => setDarkMode(!darkMode)}
+          >
+            {darkMode ? "Light" : "Dark"}
+          </button>
+        </div>
+
+        <div className="burger" onClick={() => setNavOpen(!navOpen)}>
+          <span />
+          <span />
+          <span />
+        </div>
       </header>
 
-      <section id="about">
-        <h2>About Me</h2>
-        <p>
-          I am a software developer with experience in PHP, JavaScript, system automation, SAP integration, and backend systems.
-        </p>
-      </section>
+      <main>
+        <section id="home" className="section home">
+          <div className="hero">
+            <div className="hero-text">
+              <h1>Hello, I’m [Your Name]</h1>
+              <p>Web Developer | PHP | React | Node.js | SAP Integration</p>
+              <button className="cta" onClick={() => scrollToSection("projects")}>
+                View Projects
+              </button>
+            </div>
 
-      <section id="projects">
-        <h2>Projects</h2>
+            <div className="hero-img">
+              <img src="/your-photo.jpg" alt="Your Name" />
+            </div>
+          </div>
+        </section>
 
-        <div className="card">
-          <h3>Driver Payroll System</h3>
-          <p>Automated payroll system integrated with SAP and MySQL.</p>
-        </div>
+        <section id="about" className="section about">
+          <h2>About Me</h2>
+          <p>
+            I build scalable web applications using PHP, React, and modern
+            technologies. I have experience integrating SAP systems and
+            automating business processes.
+          </p>
+        </section>
 
-        <div className="card">
-          <h3>Server Migration Project</h3>
-          <p>Migrated legacy PHP systems to a new Linux server with minimal downtime.</p>
-        </div>
+        <section id="skills" className="section skills">
+          <h2>Skills</h2>
+          <div className="skills-grid">
+            {["PHP", "React", "TypeScript", "Node.js", "MySQL", "SAP"].map((s) => (
+              <div key={s} className="skill">
+                {s}
+              </div>
+            ))}
+          </div>
+        </section>
 
-        <div className="card">
-          <h3>Automated Printing Script</h3>
-          <p>Built printing automation using raw printer commands and PDF workflows.</p>
-        </div>
-      </section>
+        <section id="experience" className="section experience">
+          <h2>Experience</h2>
+          <div className="exp-card">
+            <h3>Intern / Web Developer</h3>
+            <p>Company Name • 2024</p>
+            <ul>
+              <li>Built automation scripts for DO processing using PHP.</li>
+              <li>Integrated SAP systems for driver payroll and reporting.</li>
+              <li>Improved system performance and reduced manual work.</li>
+            </ul>
+          </div>
+        </section>
 
-      <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: your@email.com</p>
-        <p>GitHub: github.com/phway-123</p>
-      </section>
+        <section id="projects" className="section projects">
+          <h2>Projects</h2>
+          <div className="projects-grid">
+            {projects.map((p) => (
+              <a
+                key={p.title}
+                className="project-card"
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <h3>{p.title}</h3>
+                <p>{p.desc}</p>
+                <span>View on GitHub →</span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section id="contact" className="section contact">
+          <h2>Contact</h2>
+          <p>Email: yourname@example.com</p>
+          <p>Phone: +65 1234 5678</p>
+          <p>LinkedIn: linkedin.com/in/yourname</p>
+        </section>
+      </main>
+
+      <footer className="footer">
+        <p>© {new Date().getFullYear()} MyPortfolio. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
