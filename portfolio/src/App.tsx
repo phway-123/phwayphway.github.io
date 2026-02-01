@@ -2,17 +2,35 @@ import { useEffect, useState } from "react";
 import { FiSun, FiMoon } from "react-icons/fi";
 import { FaDownload } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { SiLinkedin, SiGithub, SiWhatsapp } from "react-icons/si";
+import { SiLinkedin, SiWhatsapp } from "react-icons/si";
+import profilePic from "./assets/phwayphway_pic.jpg";
+
 import "./App.css";
 
 import {
   SiPhp,
+  SiJavascript,
   SiReact,
-  SiTypescript,
-  SiNodedotjs,
+  SiBootstrap,
+  SiJquery,
   SiMysql,
-  SiSap,
+  SiNodedotjs,
+  SiPostman,
+  SiHtml5,
+  SiCss3,
+  SiApachespark,
+  SiHackerrank,
+  SiOpenjdk,
+  SiVsco,
+  SiGithub,
+  SiPostgresql,
+  SiMetabase,
+  SiLinux,
+  SiTypescript
 } from "react-icons/si";
+
+
+
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -44,7 +62,6 @@ function App() {
 
   const sections = [
     { id: "home", label: "Home" },
-    { id: "about", label: "About" },
     { id: "skills", label: "Skills" },
     { id: "experience", label: "Experience" },
     { id: "projects", label: "Projects" },
@@ -69,14 +86,56 @@ function App() {
     },
   ];
 
-  const skills = [
-    { name: "PHP", icon: <SiPhp />, level: "Advanced" },
-    { name: "React", icon: <SiReact />, level: "Advanced" },
-    { name: "TypeScript", icon: <SiTypescript />, level: "Intermediate" },
-    { name: "Node.js", icon: <SiNodedotjs />, level: "Intermediate" },
-    { name: "MySQL", icon: <SiMysql />, level: "Intermediate" },
-    { name: "SAP", icon: <SiSap />, level: "Beginner" },
-  ];
+const skills = [
+  {
+    category: "Languages",
+    items: [
+      { name: "PHP", icon: <SiPhp /> },
+      { name: "JavaScript", icon: <SiJavascript /> },
+      { name: "TypeScript", icon: <SiTypescript /> }, // added TypeScript
+      { name: "Java", icon: <SiOpenjdk /> },
+      { name: "PHP", icon: <SiPhp /> },
+      { name: "HTML5 & CSS3", icon: <SiHtml5 /> },
+    ],
+  },
+  {
+    category: "Frameworks & Libraries",
+    items: [
+      { name: "React", icon: <SiReact /> },
+      { name: "Bootstrap", icon: <SiBootstrap /> },
+      { name: "jQuery", icon: <SiJquery /> },
+    ],
+  },
+{
+  category: "Databases",
+  items: [
+    { name: "MySQL", icon: <SiMysql /> },
+    { name: "PostgreSQL", icon: <SiPostgresql /> },
+    { name: "MSSQL", icon: <SiMetabase  /> },
+  ],
+},
+  {
+    category: "Tools & Platforms",
+    items: [
+      { name: "Git & GitHub", icon: <SiGithub /> },
+      { name: "VS Code", icon: <SiVsco /> },
+      { name: "Node.js", icon: <SiNodedotjs /> },
+      { name: "Postman", icon: <SiPostman /> },
+      { name: "Linux", icon: <SiLinux /> }, // added Linux
+    ],
+  },
+  {
+    category: "Other Skills / Concepts",
+    items: [
+      { name: "RESTful API development", icon: <SiApachespark /> },
+      { name: "Responsive Web Design", icon: <SiCss3 /> },
+      { name: "Debugging & Testing", icon: <SiVsco /> },
+      { name: "Problem-solving & Collaboration", icon: <SiHackerrank /> },
+    ],
+  },
+];
+
+
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -125,56 +184,66 @@ function App() {
 
       <main>
         <section id="home" className="section home">
+            <div className="hero-container">
           <div className="hero">
+            <div className="hero-img">
+              <img src={profilePic} alt="Phway Phway" />
+            </div>
             <div className="hero-text">
-              <h1>Hello, I’m [Your Name]</h1>
-              <p>Web Developer | PHP | React | Node.js | SAP Integrationgggggggggggggggggggggggggggggggggggggggggggggg</p>
-           <a className="cta" href="/PhwayPhway_CV.pdf" download>
+              <h1>Hello, I'm Phway Phway.</h1>
+              <p>
+                I am a passionate <strong>full-stack developer</strong> and <strong>a Diploma graduate in Information Technology from Singapore Polytechnic</strong>, 
+                with hands-on experience in Java, SQL, PHP, HTML, CSS, and JavaScript. I enjoy building efficient, user-friendly applications and 
+                web solutions that solve real-world problems. During my studies and internship, I collaborated on various software and web development projects,
+                 tackling challenges with creative solutions and staying up-to-date with emerging technologies. 
+                 These experiences strengthened my full-stack development skills and reinforced my ability to design, implement, and
+                 optimize digital solutions. I am eager to contribute to innovative projects, expand my expertise, and work with teams 
+                 that value creativity and technological growth.</p>
+<a className="cta" href="./PhwayPhway_CV.pdf" download="PhwayPhway_CV.pdf">
   <FaDownload className="cta-icon" />
   Download CV
 </a>
+            </div>       
+          </div>
+          </div>
+        </section>
+
+<section id="skills" className="section skills">
+  <h2>Skills</h2>
+  <div className="skills-grid">
+    {skills.map((category) => (
+      <div className="skill-category" key={category.category}>
+        <h3 className="category-title">{category.category}</h3>
+        <div className="category-items">
+          {category.items.map((s) => (
+            <div className="skill" key={s.name}>
+              <div className="skill-icon">{s.icon}</div>
+              <div className="skill-name">{s.name}</div>
             </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
 
-            <div className="hero-img">
-              <img src="../images/portfolio_tester.png" alt="Your Name" />
-            </div>
-          </div>
-        </section>
 
-        <section id="about" className="section about">
-          <h2>About Me</h2>
-          <p>
-            I build scalable web applications using PHP, React, and modern
-            technologies. I have experience integrating SAP systems and
-            automating business processes.
-          </p>
-        </section>
+<section id="experience" className="section experience">
+  <h2>Experience</h2>
+  <div className="exp-card">
+    <h3>Intern / Web Developer</h3>
+    <p>Company Name • 2024</p>
+    <ul>
+      <li>Assisted in system development and enhancements, contributing to more efficient workflows.</li>
+      <li>Supported data monitoring and system integration processes to ensure accurate reporting.</li>
+      <li>Developed reports and dashboards to provide actionable business insights for internal teams.</li>
+      <li>Delivered Level 1 helpdesk support, troubleshooting and resolving technical issues for users.</li>
+      <li>Applied SQL and database knowledge to extract, analyze, and manage data effectively.</li>
+      <li>Used PHP, Microsoft Excel, and other tools to support development and reporting tasks.</li>
+    </ul>
+  </div>
+</section>
 
-        <section id="skills" className="section skills">
-          <h2>Skills</h2>
-          <div className="skills-grid">
-            {skills.map((s) => (
-              <div className="skill" key={s.name}>
-                <div className="skill-icon">{s.icon}</div>
-                <div className="skill-name">{s.name}</div>
-                <div className="skill-level">{s.level}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="experience" className="section experience">
-          <h2>Experience</h2>
-          <div className="exp-card">
-            <h3>Intern / Web Developer</h3>
-            <p>Company Name • 2024</p>
-            <ul>
-              <li>Built automation scripts for DO processing using PHP.</li>
-              <li>Integrated SAP systems for driver payroll and reporting.</li>
-              <li>Improved system performance and reduced manual work.</li>
-            </ul>
-          </div>
-        </section>
 
         <section id="projects" className="section projects">
           <h2>Projects</h2>
@@ -245,7 +314,7 @@ function App() {
       </main>
 
       <footer className="footer">
-        <p>© {new Date().getFullYear()} MyPortfolio. All rights reserved.</p>
+        <p>Copyright © {new Date().getFullYear()} Phway Phway. All rights reserved.</p>
       </footer>
     </div>
   );
