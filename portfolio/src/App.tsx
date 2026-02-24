@@ -68,24 +68,28 @@ function App() {
     { id: "contact", label: "Contact" },
   ];
 
-  const projects = [
-    {
-      title: "Project 1",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      link: "https://github.com/yourusername/delivery-automation",
-    },
-    {
-      title: "Project 2",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      link: "https://github.com/yourusername/driver-payroll",
-    },
-    {
-      title: "Portfolio Website",
-      desc: "Modern portfolio website built with React & TypeScript.",
-      link: "https://github.com/yourusername/portfolio",
-    },
-  ];
-
+const projects = [
+  {
+    title: "Event Management Platform",
+    desc: "A collaborative full-stack application featuring a managed CI/CD pipeline. I engineered the social connectivity features, including user profile management and a secure messaging system for staff coordination.",
+    link: "https://github.com/yourusername/event-management-cicd",
+  },
+  {
+    title: "Cleaning Service Platform",
+    desc: "A Java-based enterprise solution featuring cloud-hosted REST API integration. Implemented a secure checkout flow and full CRUD operations to manage service bookings and automated customer data handling.",
+    link: "https://github.com/yourusername/cleaning-service-java",
+  },
+  {
+    title: "Web Security Audit Project",
+    desc: "A security-focused initiative identifying and mitigating OWASP Top 10 vulnerabilities. Successfully implemented protections against SQL Injection and Cross-Site Scripting (XSS) to harden web application defenses.",
+    link: "https://github.com/yourusername/web-security-owasp",
+  },
+  {
+    title: "Study Buddy (UI/UX Case Study)",
+    desc: "A user-centric design project driven by real-world user interviews and iterative feedback. Developed a ready-to-use high-fidelity prototype focused on enhancing student collaboration and accessibility.",
+    link: "https://github.com/yourusername/study-buddy-ux",
+  },
+];
 const skills = [
   {
     category: "Languages",
